@@ -60,7 +60,11 @@ spec:
             - "-ec"
             - |
               consul-k8s sync-catalog \
+                {{- if .Values.syncCatalog.consulServerUrl }}
+                -http-addr={{ .Values.syncCatalog.consulServerUrl }} \
+                {{- else }}
                 -http-addr=${HOST_IP}:8500 \
+                {{- end }}
                 -k8s-default-sync={{ .Values.syncCatalog.default }} \
                 {{- if (not .Values.syncCatalog.toConsul) }}
                 -to-consul=false \
