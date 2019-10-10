@@ -121,6 +121,7 @@ spec:
                 {{- range $index := until (.Values.server.replicas | int) }}
                 -retry-join=${CONSUL_FULLNAME}-server-{{ $index }}.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
                 {{- end }}
+                -recursor={{ .Values.server.recursor }} \
                 -server
           volumeMounts:
             - name: data-{{ .Release.Namespace }}
