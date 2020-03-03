@@ -27,6 +27,7 @@ spec:
         component: sync-catalog
       annotations:
         "consul.hashicorp.com/connect-inject": "false"
+        "sidecar.istio.io/inject": "false"
     spec:
       serviceAccountName: {{ template "consul.fullname" . }}-sync-catalog
       containers:
